@@ -25,6 +25,8 @@ public class ArticlesFamilyCreationDto {
     @JsonInclude(Include.NON_NULL)
     private String article;
 
+    private Article articleObj;
+
     public ArticlesFamilyCreationDto() {
         // Empty for framework
     }
@@ -36,6 +38,14 @@ public class ArticlesFamilyCreationDto {
         this.description = description;
         this.articlesFamilyListId = articlesFamilyListId;
         this.article = article;
+    }
+
+    public ArticlesFamilyCreationDto(FamilyType familyType, String reference, String description,  String[] articlesFamilyListId, Article articleObj) {
+        this.familyType = familyType;
+        this.reference = reference;
+        this.description = description;
+        this.articlesFamilyListId = articlesFamilyListId;
+        this.articleObj = articleObj;
     }
 
     public String getId() {
@@ -76,6 +86,14 @@ public class ArticlesFamilyCreationDto {
 
     public void setArticle(String article){
         this.article = article;
+    }
+
+    public Article getArticleObj(){
+        return articleObj;
+    }
+
+    public void setArticleObj(Article article){
+        this.articleObj = article;
     }
 
     public String[] getArticlesFamilyListId() {
