@@ -155,9 +155,9 @@ public class ArticlesFamilyController {
             if (articlesFamilyCreationDto.getArticlesFamilyListId() != null && articlesFamilyCreationDto.getArticlesFamilyListId().length > 0) {
                 for (int i = 0; i < articlesFamilyCreationDto.getArticlesFamilyListId().length; i++) {
                     String articleFamilyId = articlesFamilyCreationDto.getArticlesFamilyListId()[i];
-                    if (this.articlesFamilyRepository.findById(articleFamilyId).isPresent()) {
-                        familyComposite.add(this.articlesFamilyRepository.findById(articleFamilyId).get());
-                    }
+                    this.articlesFamilyReactRepository.findById(articleFamilyId)
+                            .switchIfEmpty(Mono.error(new NotFoundException("ArticleFamily (" + articleFamilyId + ")")))
+                            .doOnNext(familyComposite::add).then();
                 }
             }
             articlesFamily = familyComposite;
