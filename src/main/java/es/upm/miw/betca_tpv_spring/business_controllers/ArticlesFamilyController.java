@@ -146,7 +146,7 @@ public class ArticlesFamilyController {
         if (articlesFamilyCreationDto.getFamilyType() == FamilyType.ARTICLE) {
 
             Article article = this.articleRepository.findById(articlesFamilyCreationDto.getArticle()).get();
-            articlesFamily = new FamilyArticle(article);
+            articlesFamily = new FamilyArticle(articlesFamilyCreationDto.getArticle());
 
         } else {
             FamilyComposite familyComposite = new FamilyComposite(articlesFamilyCreationDto.getFamilyType(),
